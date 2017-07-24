@@ -1,0 +1,21 @@
+Hello <%= @user.first_name %><br>
+<a href='/logout'>Logout</a>  |  <a href='/dashboard'>Go to Dashboard</a><br>
+All Products<br>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Seller</th>
+        <th>Date Posted</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>    
+    <% @shoes.each do |shoe| %>
+        <tr>
+            <td><%= shoe.product %></td>
+            <td><%= shoe.user.first_name %> <%= shoe.user.last_name %></td>
+            <td><%= shoe.created_at.strftime("%B, %d, %Y") %></td>
+            <td>$<%= '%.2f' % shoe.price %></td>
+            <td><a href='/shoes/<%= shoe.id %>/buy' data-method='POST'>Buy</a></td>
+        </tr>    
+    <% end %>
+</table>
